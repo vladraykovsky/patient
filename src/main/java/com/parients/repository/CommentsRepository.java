@@ -17,15 +17,7 @@ public class CommentsRepository {
     public JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate");
 
 
-    public void create_table(){
-        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS comments " +
-                "(" +
-                "  comments_id bigint NOT NULL PRIMARY KEY ," +
-                "  comment_value character varying," +
-                "  id_patient bigserial NOT NULL" +
-                "); ALTER TABLE comments ADD CONSTRAINT id_pat_const FOREIGN KEY (id_patient)" +
-                "REFERENCES patient(patient_id)" );
-    }
+
 
     public CommentsRepository(){}
 

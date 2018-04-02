@@ -15,11 +15,7 @@ public class CommentController {
     CommentsRepository commentsRepository = new CommentsRepository();
 
 
-    @RequestMapping(value = "api/comment/db")
-    public String dbcreate(){
-        commentsRepository.create_table();
-        return "created";
-    }
+
 
     @RequestMapping(value = "api/comment",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Comment> db(){

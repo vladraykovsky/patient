@@ -25,19 +25,7 @@ public class PatientRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void create_table(){
-        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS patient" +
-                "(" +
-                "  patient_id bigint NOT NULL PRIMARY KEY ," +
-                "  name VARCHAR," +
-                "  surname VARCHAR," +
-                "  date_of_birth date," +
-                "  country VARCHAR ," +
-                "  state VARCHAR ," +
-                "  address VARCHAR ," +
-                "  sex VARCHAR " +
-                ")");
-    }
+
 
 
    public List<Patient> selectAll(){
