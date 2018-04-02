@@ -19,7 +19,7 @@ public class PatientController {
         return "hello vlad";
     }
 
-    
+
     @RequestMapping(value = "api/patient",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Patient> db(){
         return patientRepository.selectAll();

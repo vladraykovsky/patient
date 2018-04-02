@@ -18,7 +18,6 @@ public class CommentsRepository {
 
 
 
-
     public CommentsRepository(){}
 
     public CommentsRepository(JdbcTemplate jdbcTemplate){

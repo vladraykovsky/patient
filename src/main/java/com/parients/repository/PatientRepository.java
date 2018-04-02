@@ -26,10 +26,7 @@ public class PatientRepository {
     }
 
 
-
-
    public List<Patient> selectAll(){
-        create_table();
         return jdbcTemplate.query("SELECT patient_id, name , surname , date_of_birth,country,state, address,sex FROM patient",
                 (rs,rowNum)->new Patient(rs.getLong("patient_id"),
                         rs.getString("name"),
