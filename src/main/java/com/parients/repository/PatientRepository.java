@@ -25,7 +25,24 @@ public class PatientRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public void create_table(){
+        jdbcTemplate.execute("CREATE TABLE patient\n" +
+                "(\n" +
+                "  patient_id bigint NOT NULL DEFAULT nextval('patient_id_seq'::regclass),\n" +
+                "  name character varying,\n" +
+                "  surname character varying,\n" +
+                "  date_of_birth date,\n" +
+                "  country character varying,\n" +
+                "  state character varying,\n" +
+                "  address character varying,\n" +
+                "  sex character varying,\n" +
+                "  CONSTRAINT patient_pkey PRIMARY KEY (patient_id)\n" +
+                ")");
+    }
+
+
    public List<Patient> selectAll(){
+        create_table();
         return jdbcTemplate.query("SELECT patient_id, name , surname , date_of_birth,country,state, address,sex FROM patient",
                 (rs,rowNum)->new Patient(rs.getLong("patient_id"),
                         rs.getString("name"),
