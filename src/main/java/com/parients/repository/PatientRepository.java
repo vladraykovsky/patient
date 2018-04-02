@@ -28,7 +28,7 @@ public class PatientRepository {
     public void create_table(){
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS patient" +
                 "(" +
-                "  patient_id bigint NOT NULL DEFAULT PRIMARY KEY ," +
+                "  patient_id bigint NOT NULL PRIMARY KEY ," +
                 "  name VARCHAR," +
                 "  surname VARCHAR," +
                 "  date_of_birth date," +
