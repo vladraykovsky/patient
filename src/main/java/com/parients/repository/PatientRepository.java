@@ -35,8 +35,7 @@ public class PatientRepository {
                 "  country VARCHAR ," +
                 "  state VARCHAR ," +
                 "  address VARCHAR ," +
-                "  sex VARCHAR ," +
-                "   " +
+                "  sex VARCHAR " +
                 ")");
     }
 
