@@ -20,7 +20,7 @@ public class CommentsRepository {
     public void create_table(){
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS comments " +
                 "(" +
-                "  comments_id bigint NOT NULL PRIMARY KEY (comments_id)," +
+                "  comments_id bigint NOT NULL PRIMARY KEY ," +
                 "  comment_value character varying," +
                 "  id_patient bigserial NOT NULL" +
                 "); ALTER TABLE comments ADD CONSTRAINT id_pat_const FOREIGN KEY (id_patient)" +
