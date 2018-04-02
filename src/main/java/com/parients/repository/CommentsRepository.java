@@ -20,14 +20,11 @@ public class CommentsRepository {
     public void create_table(){
         jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS comments " +
                 "(" +
-                "  comments_id bigint NOT NULL DEFAULT nextval('comments_id_seq'::regclass)," +
+                "  comments_id bigint NOT NULL DEFAULT PRIMARY KEY (comments_id)," +
                 "  comment_value character varying," +
-                "  id_patient bigserial NOT NULL," +
-                "  CONSTRAINT comments_pkey PRIMARY KEY (comments_id)," +
-                "  CONSTRAINT fk_id_patient FOREIGN KEY (id_patient)" +
-                "      REFERENCES patient (patient_id) MATCH SIMPLE" +
-                "      ON UPDATE NO ACTION ON DELETE NO ACTION" +
-                ")");
+                "  id_patient bigserial NOT NULL" +
+                "); ALTER TABLE comments ADD CONSTRAINT id_pat_const FOREIGN KEY (id_patient)" +
+                "REFERENCES patient(patient_id)" );
     }
 
     public CommentsRepository(){}
