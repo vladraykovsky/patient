@@ -20,6 +20,13 @@ public class PatientController {
     }
 
 
+    @RequestMapping(method = RequestMethod.GET,value = "/db")
+    public String createdb(){
+        patientRepository.create_table();
+        return "create";
+    }
+
+
     @RequestMapping(value = "api/patient",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Patient> db(){
         return patientRepository.selectAll();

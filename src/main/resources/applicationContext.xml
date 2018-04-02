@@ -13,7 +13,7 @@
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"/>
+        <constructor-arg value="dataSource"></constructor-arg>
     </bean>
 
 </beans>

@@ -18,15 +18,15 @@ public class CommentsRepository {
 
 
     public void create_table(){
-        jdbcTemplate.execute("CREATE TABLE comments\n" +
-                "(\n" +
-                "  comments_id bigint NOT NULL DEFAULT nextval('comments_id_seq'::regclass),\n" +
-                "  comment_value character varying,\n" +
-                "  id_patient bigserial NOT NULL,\n" +
-                "  CONSTRAINT comments_pkey PRIMARY KEY (comments_id),\n" +
-                "  CONSTRAINT fk_id_patient FOREIGN KEY (id_patient)\n" +
-                "      REFERENCES patient (patient_id) MATCH SIMPLE\n" +
-                "      ON UPDATE NO ACTION ON DELETE NO ACTION\n" +
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS comments " +
+                "(" +
+                "  comments_id bigint NOT NULL DEFAULT nextval('comments_id_seq'::regclass)," +
+                "  comment_value character varying," +
+                "  id_patient bigserial NOT NULL," +
+                "  CONSTRAINT comments_pkey PRIMARY KEY (comments_id)," +
+                "  CONSTRAINT fk_id_patient FOREIGN KEY (id_patient)" +
+                "      REFERENCES patient (patient_id) MATCH SIMPLE" +
+                "      ON UPDATE NO ACTION ON DELETE NO ACTION" +
                 ")");
     }
 
@@ -37,7 +37,6 @@ public class CommentsRepository {
     }
 
    public List<Comment> commentList(){
-        create_table();
         return jdbcTemplate.query("SELECT comments_id,comment_value ,id_patient FROM comments",
                 (rs,rowNum)->new Comment(rs.getInt("comments_id"),
                         rs.getString("comment_value"),rs.getLong("id_patient")));

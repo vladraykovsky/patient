@@ -26,17 +26,17 @@ public class PatientRepository {
     }
 
     public void create_table(){
-        jdbcTemplate.execute("CREATE TABLE patient\n" +
-                "(\n" +
-                "  patient_id bigint NOT NULL DEFAULT nextval('patient_id_seq'::regclass),\n" +
-                "  name character varying,\n" +
-                "  surname character varying,\n" +
-                "  date_of_birth date,\n" +
-                "  country character varying,\n" +
-                "  state character varying,\n" +
-                "  address character varying,\n" +
-                "  sex character varying,\n" +
-                "  CONSTRAINT patient_pkey PRIMARY KEY (patient_id)\n" +
+        jdbcTemplate.execute("CREATE TABLE IF NOT EXISTS patient" +
+                "(" +
+                "  patient_id bigint NOT NULL DEFAULT nextval('patient_id_seq'::regclass)," +
+                "  name character varying," +
+                "  surname character varying," +
+                "  date_of_birth date," +
+                "  country character varying," +
+                "  state character varying," +
+                "  address character varying," +
+                "  sex character varying," +
+                "  CONSTRAINT patient_pkey PRIMARY KEY (patient_id)" +
                 ")");
     }
 
