@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@CrossOrigin(origins = "http://localhost:4200")
 public class CommentsRepository {
 
     public ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

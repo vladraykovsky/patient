@@ -19,18 +19,20 @@ public class PatientController {
         return "hello vlad";
     }
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/patient",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Patient> db(){
         return patientRepository.selectAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/patient/{patient_id}")
     public List<Patient> byid(@PathVariable("patient_id") String patient_id){
         System.out.println("patient_id");
         return patientRepository.selectById(Integer.valueOf(patient_id));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/api/patient/update",method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Patient patient){
         System.out.println(patient);
@@ -39,6 +41,7 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/api/patient/add",method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Patient patient){
         patientRepository.add(patient);
@@ -47,7 +50,8 @@ public class PatientController {
     }
 
 
-    @RequestMapping(value = "/api/patient/delete",method = RequestMethod.DELETE)
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/api/patient/delete",method = RequestMethod.POST)
     public ResponseEntity< String > delete(@RequestBody Patient patient){
         System.out.println(patient);
         patientRepository.delete(patient);

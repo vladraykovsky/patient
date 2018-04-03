@@ -14,18 +14,20 @@ import java.util.List;
 public class CommentController {
     CommentsRepository commentsRepository = new CommentsRepository();
 
-
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/comment",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Comment> db(){
         return commentsRepository.commentList();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/comment/{comment_id}")
     public List<Comment> byid(@PathVariable("comment_id") String comment_id){
         System.out.println("comment_id");
         return commentsRepository.commentListSelectByForeigh(Integer.valueOf(comment_id));
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/api/comment/update",method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Comment comment){
         System.out.println(comment);
@@ -34,6 +36,7 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/api/comment/add",method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Comment comment){
         commentsRepository.add(comment);
@@ -41,8 +44,8 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-
-    @RequestMapping(value = "/api/comment/delete",method = RequestMethod.DELETE)
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/api/comment/delete",method = RequestMethod.POST)
     public ResponseEntity< String > delete(@RequestBody Comment comment){
         System.out.println(comment);
         commentsRepository.delete(comment);

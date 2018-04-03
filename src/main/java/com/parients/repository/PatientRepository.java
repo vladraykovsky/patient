@@ -17,6 +17,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 @Repository
+@CrossOrigin(origins = "http://localhost:4200")
 public class PatientRepository {
     public ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
     public JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate");
