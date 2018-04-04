@@ -1,8 +1,9 @@
 package com.parients.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Comment implements Comparable<Comment>{
+public class Comment implements Comparable<Comment> , Serializable{
     long comment_id;
     String comment_value;
     long patient_id;
@@ -12,6 +13,8 @@ public class Comment implements Comparable<Comment>{
         this.comment_value = comment_value;
         this.patient_id = patient_id;
     }
+
+    public Comment(){}
 
     public Comment(String comment_value, long patient_id) {
         comment_id_add++;
