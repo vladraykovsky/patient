@@ -54,4 +54,15 @@ public class CommentController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/api/comment/delete/foreign",method = RequestMethod.POST)
+    public ResponseEntity< String > delete_by_foreign_key(@RequestBody Comment comment){
+        System.out.println(comment);
+        commentsRepository.delete_by_foreign_key(comment);
+        System.out.println("delete");
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+
 }

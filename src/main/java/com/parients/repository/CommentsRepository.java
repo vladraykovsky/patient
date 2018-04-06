@@ -54,6 +54,12 @@ public class CommentsRepository {
     }
 
 
+    public void delete_by_foreign_key(Comment comment){
+        jdbcTemplate.execute("DELETE FROM comments WHERE id_patient="+comment.getPatient_id());
+    }
+
+
+
     public void add(Comment comment){
         System.out.println("add method");
         jdbcTemplate.update("INSERT INTO comments VALUES("+comment.getComment_id()+",\'"+comment.getComment_value()+"\',\'"+comment.getPatient_id()+"\');");
