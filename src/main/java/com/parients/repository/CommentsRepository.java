@@ -62,7 +62,7 @@ public class CommentsRepository {
 
     public void add(Comment comment){
         System.out.println("add method");
-        jdbcTemplate.update("INSERT INTO comments VALUES("+comment.getComment_id()+",\'"+comment.getComment_value()+"\',\'"+comment.getPatient_id()+"\');");
+        jdbcTemplate.update("INSERT INTO comments VALUES("+"DEFAULT "+",\'"+comment.getComment_value()+"\',\'"+comment.getPatient_id()+"\');");
     }
 
 

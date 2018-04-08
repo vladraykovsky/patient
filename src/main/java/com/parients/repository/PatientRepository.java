@@ -81,7 +81,7 @@ public class PatientRepository {
 
     public void add(Patient patient){
         System.out.println("add method");
-        jdbcTemplate.update("INSERT INTO patient VALUES("+patient.getPatient_id()+
+        jdbcTemplate.update("INSERT INTO patient VALUES("+"DEFAULT"+
                 ",\'"+patient.getName()+
                 "\',\'"+patient.getSurname()+
                 "\',\'"+patient.getDate_of_birth()+
