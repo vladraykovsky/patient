@@ -60,9 +60,9 @@ public class PatientController {
     }
 
 
-    @RequestMapping(value = "/api/delete",method = RequestMethod.Get)
+    @RequestMapping(value = "/api/delete",method = RequestMethod.GET)
     public  String deletedata(){
-
+        patientRepository.addddelete();
         return "done";
     }
 
