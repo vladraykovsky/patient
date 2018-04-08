@@ -111,11 +111,11 @@ public class PatientRepository {
                 "(" +
                 "  comments_id BIGSERIAL NOT NULL PRIMARY KEY," +
                 "  comment_value character varying," +
-                "  patient_id BIGSERIAL NOT NULL" +
+                "  id_patient BIGSERIAL NOT NULL" +
                 ");" +
                 "ALTER TABLE comments " +
                 "   ADD CONSTRAINT fk_someName" +
-                "   FOREIGN KEY (patient_id) " +
+                "   FOREIGN KEY (id_patient) " +
                 "   REFERENCES patient(patient_id);");
     }
 
