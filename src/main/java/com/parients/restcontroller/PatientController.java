@@ -59,4 +59,11 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+
+    @RequestMapping(value = "/api/delete",method = RequestMethod.Get)
+    public  String deletedata(){
+
+        return "done";
+    }
+
 }

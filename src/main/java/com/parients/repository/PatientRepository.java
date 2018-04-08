@@ -81,7 +81,7 @@ public class PatientRepository {
 
     public void add(Patient patient){
         System.out.println("add method");
-        jdbcTemplate.update("INSERT INTO patient VALUES("+"DEFAULT"+
+        jdbcTemplate.update("INSERT INTO patient VALUES( DEFAULT"+
                 ",\'"+patient.getName()+
                 "\',\'"+patient.getSurname()+
                 "\',\'"+patient.getDate_of_birth()+
@@ -90,6 +90,33 @@ public class PatientRepository {
                 "\',\'"+patient.getAddress()+
                 "\',\'"+patient.getSex()+
                 "\');");
+    }
+
+
+    public void addddelete(){
+        jdbcTemplate.execute("DROP TABLE comments; " +
+                " DROP TABLE patient;" +
+                "CREATE TABLE patient" +
+                "(" +
+                "  patient_id BIGSERIAL NOT NULL PRIMARY KEY," +
+                "  name character varying," +
+                "  surname character varying," +
+                "  date_of_birth date," +
+                "  country character varying," +
+                "  state character varying," +
+                "  address character varying," +
+                "  sex character varying" +
+                ");" +
+                "CREATE TABLE comments" +
+                "(" +
+                "  comments_id BIGSERIAL NOT NULL PRIMARY KEY," +
+                "  comment_value character varying," +
+                "  patient_id BIGSERIAL NOT NULL" +
+                ");" +
+                "ALTER TABLE comments " +
+                "   ADD CONSTRAINT fk_someName" +
+                "   FOREIGN KEY (patient_id) " +
+                "   REFERENCES patient(patient_id);");
     }
 
 
