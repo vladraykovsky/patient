@@ -61,6 +61,22 @@ public class PatientRepository {
     }
 
 
+    public List<Patient> selectFirstPatient(){
+        return jdbcTemplate.query("SELECT patient_id, name , surname , date_of_birth,country,state, address,sex " +
+                                       "FROM patient LIMIT 1" ,
+                (rs,rowNum)->new Patient(rs.getLong("patient_id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getDate("date_of_birth").toString(),
+                        rs.getString("country"),
+                        rs.getString("state"),
+                        rs.getString("address"),
+                        rs.getString("sex"),new TreeSet<>(new CommentsRepository(jdbcTemplate).commentListSelectByForeigh((int)rs.getLong("patient_id")))));
+    }
+
+
+
+
     public void update(Patient patient){
         jdbcTemplate.update("UPDATE patient SET name=\'"+patient.getName()+
                 "\',surname =\'"+patient.getSurname()+

@@ -60,6 +60,15 @@ public class PatientController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "/api/patient/first",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Patient> getFirstPatientFromDb(){
+        return patientRepository.selectFirstPatient();
+    }
+
+
+
+
     @RequestMapping(value = "/api/delete",method = RequestMethod.GET)
     public  String deletedata(){
         patientRepository.addddelete();
