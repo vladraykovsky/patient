@@ -22,10 +22,6 @@ public class PatientRepository {
     public ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
     public JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate");
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
-
 
    public List<Patient> selectAll(){
         return jdbcTemplate.query("SELECT patient_id, name , surname , date_of_birth,country,state, address,sex FROM patient",
@@ -38,12 +34,6 @@ public class PatientRepository {
                         rs.getString("address"),
                         rs.getString("sex")));
     }
-
-
-    public Set<Comment> loadComments(int id){
-        return new TreeSet<>( new CommentsRepository(jdbcTemplate).commentListSelectByForeigh(id));
-    }
-
 
 
 
@@ -96,7 +86,6 @@ public class PatientRepository {
 
 
     public void add(Patient patient){
-        System.out.println("add method");
         jdbcTemplate.update("INSERT INTO patient VALUES( DEFAULT"+
                 ",\'"+patient.getName()+
                 "\',\'"+patient.getSurname()+
@@ -109,7 +98,7 @@ public class PatientRepository {
     }
 
 
-    public void addddelete(){
+    public void resetDataBase(){
         jdbcTemplate.execute("DROP TABLE comments; " +
                 " DROP TABLE patient;" +
                 "CREATE TABLE patient" +
@@ -134,12 +123,5 @@ public class PatientRepository {
                 "   FOREIGN KEY (id_patient) " +
                 "   REFERENCES patient(patient_id);");
     }
-
-
-
-
-
-
-
 
 }

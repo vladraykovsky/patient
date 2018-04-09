@@ -21,14 +21,13 @@ public class PatientController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/patient",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Patient> db(){
+    public List<Patient> selectAllPatient(){
         return patientRepository.selectAll();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "api/patient/{patient_id}")
     public List<Patient> byid(@PathVariable("patient_id") String patient_id){
-        System.out.println("patient_id");
         return patientRepository.selectById(Integer.valueOf(patient_id));
     }
 
@@ -69,10 +68,10 @@ public class PatientController {
 
 
 
-    @RequestMapping(value = "/api/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/api/reset",method = RequestMethod.GET)
     public  String deletedata(){
-        patientRepository.addddelete();
-        return "done";
+        patientRepository.resetDataBase();
+        return "database is reseted";
     }
 
 }
