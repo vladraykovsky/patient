@@ -8,8 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@RequestMapping(value = "/api")
 public class PatientController {
 
     PatientRepository patientRepository = new PatientRepository();
@@ -20,19 +21,19 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "api/patient",produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Patient> selectAllPatient(){
         return patientRepository.selectAll();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "api/patient/{patient_id}")
+    @RequestMapping(value = "/{patient_id}")
     public List<Patient> byid(@PathVariable("patient_id") String patient_id){
         return patientRepository.selectById(Integer.valueOf(patient_id));
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/api/patient/update",method = RequestMethod.PATCH)
+    @RequestMapping(method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Patient patient){
         System.out.println(patient);
         patientRepository.update(patient);
@@ -41,7 +42,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/api/patient/add",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Patient patient){
         patientRepository.add(patient);
         System.out.println("add");
@@ -50,7 +51,7 @@ public class PatientController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/api/patient/delete",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity< String > delete(@RequestBody Patient patient){
         System.out.println(patient);
         patientRepository.delete(patient);
@@ -60,7 +61,7 @@ public class PatientController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/api/patient/first",produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/first",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Patient> getFirstPatientFromDb(){
         return patientRepository.selectFirstPatient();
     }
