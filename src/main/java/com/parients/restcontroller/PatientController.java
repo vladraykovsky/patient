@@ -27,7 +27,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/{patient_id}")
+    @RequestMapping(value = "/{patient_id}" , method = RequestMethod.GET)
     public List<Patient> byid(@PathVariable("patient_id") String patient_id){
         return patientRepository.selectById(Integer.valueOf(patient_id));
     }
@@ -51,8 +51,10 @@ public class PatientController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity< String > delete(@RequestBody Patient patient){
+    @RequestMapping(value = "/{patient_id}" ,method = RequestMethod.DELETE)
+    public ResponseEntity< String > delete(@PathVariable("patient_id") String patient_id){
+        Patient patient = new Patient(Long.valueOf(Integer.parseInt(patient_id))," ",
+                " "," "," "," "," "," ");
         System.out.println(patient);
         patientRepository.delete(patient);
         System.out.println("delete");
