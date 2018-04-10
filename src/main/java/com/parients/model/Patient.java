@@ -1,6 +1,5 @@
 package com.parients.model;
 
-import com.parients.comparator.CommentComparator;
 
 import java.io.Serializable;
 import java.util.Objects;
