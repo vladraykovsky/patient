@@ -37,6 +37,7 @@ public class CommentController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Comment comment){
+        System.out.println("in add");
         commentsRepository.add(comment);
         System.out.println("added");
         return ResponseEntity.status(HttpStatus.CREATED).build();
