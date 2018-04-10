@@ -92,30 +92,4 @@ public class PatientRepository {
                 "\');");
     }
 
-
-    public void resetDataBase(){
-        jdbcTemplate.execute("DROP TABLE comments; " +
-                " DROP TABLE patient;" +
-                "CREATE TABLE patient" +
-                "(" +
-                "  patient_id BIGSERIAL NOT NULL PRIMARY KEY," +
-                "  name character varying," +
-                "  surname character varying," +
-                "  date_of_birth date," +
-                "  country character varying," +
-                "  state character varying," +
-                "  address character varying," +
-                "  sex character varying" +
-                ");" +
-                "CREATE TABLE comments" +
-                "(" +
-                "  comments_id BIGSERIAL NOT NULL PRIMARY KEY," +
-                "  comment_value character varying," +
-                "  id_patient BIGSERIAL NOT NULL" +
-                ");" +
-                "ALTER TABLE comments " +
-                "   ADD CONSTRAINT fk_someName" +
-                "   FOREIGN KEY (id_patient) " +
-                "   REFERENCES patient(patient_id);");
-    }
 }

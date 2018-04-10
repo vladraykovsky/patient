@@ -10,15 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = "/api/patient")
 public class PatientController {
 
     PatientRepository patientRepository = new PatientRepository();
 
-    @RequestMapping(method = RequestMethod.GET,value = "/hello")
-    public String welcome(){
-        return "hello vlad";
-    }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
@@ -55,9 +51,7 @@ public class PatientController {
     public ResponseEntity< String > delete(@PathVariable("patient_id") String patient_id){
         Patient patient = new Patient(Long.valueOf(Integer.parseInt(patient_id))," ",
                 " "," "," "," "," "," ");
-        System.out.println(patient);
         patientRepository.delete(patient);
-        System.out.println("delete");
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -66,15 +60,6 @@ public class PatientController {
     @RequestMapping(value = "/first",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Patient> getFirstPatientFromDb(){
         return patientRepository.selectFirstPatient();
-    }
-
-
-
-
-    @RequestMapping(value = "/api/reset",method = RequestMethod.GET)
-    public  String deletedata(){
-        patientRepository.resetDataBase();
-        return "database is reseted";
     }
 
 }
