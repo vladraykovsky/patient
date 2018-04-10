@@ -29,7 +29,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.PATCH)
+    @RequestMapping(value = "/update",method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Patient patient){
         System.out.println(patient);
         patientRepository.update(patient);
@@ -38,7 +38,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Patient patient){
         patientRepository.add(patient);
         System.out.println("add");
@@ -47,7 +47,7 @@ public class PatientController {
 
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/{patient_id}" ,method = RequestMethod.DELETE)
+    @RequestMapping(value = "{patient_id}" ,method = RequestMethod.DELETE)
     public ResponseEntity< String > delete(@PathVariable("patient_id") String patient_id){
         Patient patient = new Patient(Long.valueOf(Integer.parseInt(patient_id))," ",
                 " "," "," "," "," "," ");
