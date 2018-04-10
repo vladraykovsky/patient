@@ -28,14 +28,14 @@ public class CommentController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.PATCH)
+    @RequestMapping(value = "/update",method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Comment comment){
         commentsRepository.update(comment);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Comment comment){
         System.out.println("in add");
         commentsRepository.add(comment);
