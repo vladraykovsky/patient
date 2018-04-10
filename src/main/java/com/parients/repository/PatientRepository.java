@@ -1,20 +1,15 @@
 package com.parients.repository;
 
 
-import com.parients.comparator.CommentComparator;
-import com.parients.model.Comment;
 import com.parients.model.Patient;
 import org.springframework.context.ApplicationContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 @Repository
 @CrossOrigin(origins = "http://localhost:4200")
@@ -47,7 +42,7 @@ public class PatientRepository {
                         rs.getString("country"),
                         rs.getString("state"),
                         rs.getString("address"),
-                        rs.getString("sex"),new TreeSet<>(new CommentsRepository(jdbcTemplate).commentListSelectByForeigh(id))));
+                        rs.getString("sex")));
     }
 
 
@@ -61,7 +56,7 @@ public class PatientRepository {
                         rs.getString("country"),
                         rs.getString("state"),
                         rs.getString("address"),
-                        rs.getString("sex"),new TreeSet<>(new CommentsRepository(jdbcTemplate).commentListSelectByForeigh((int)rs.getLong("patient_id")))));
+                        rs.getString("sex")));
     }
 
 
@@ -123,5 +118,4 @@ public class PatientRepository {
                 "   FOREIGN KEY (id_patient) " +
                 "   REFERENCES patient(patient_id);");
     }
-
 }
