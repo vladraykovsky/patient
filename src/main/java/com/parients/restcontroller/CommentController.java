@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping(value = "/api/comment")
 public class CommentController {
@@ -37,6 +38,7 @@ public class CommentController {
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Comment comment){
         commentsRepository.add(comment);
+        System.out.println("added");
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
