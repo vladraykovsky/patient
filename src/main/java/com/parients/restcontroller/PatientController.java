@@ -31,7 +31,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.PATCH)
+    @RequestMapping(value = "/update",method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Patient patient){
         System.out.println(patient);
         patientRepository.update(patient);
@@ -40,7 +40,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Patient patient){
         patientRepository.add(patient);
         System.out.println("add");
