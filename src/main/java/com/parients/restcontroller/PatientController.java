@@ -1,6 +1,8 @@
 package com.parients.restcontroller;
 
+import com.parients.model.Comment;
 import com.parients.model.Patient;
+import com.parients.repository.CommentsRepository;
 import com.parients.repository.PatientRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +16,7 @@ import java.util.List;
 public class PatientController {
 
     PatientRepository patientRepository = new PatientRepository();
-
+    CommentsRepository commentRepository = new CommentsRepository();
 
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,7 +31,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/update",method = RequestMethod.PATCH)
+    @RequestMapping(method = RequestMethod.PATCH)
     public ResponseEntity<String> update(@RequestBody Patient patient){
         System.out.println(patient);
         patientRepository.update(patient);
@@ -38,7 +40,7 @@ public class PatientController {
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> add(@RequestBody Patient patient){
         patientRepository.add(patient);
         System.out.println("add");
@@ -51,6 +53,7 @@ public class PatientController {
     public ResponseEntity< String > delete(@PathVariable("patient_id") String patient_id){
         Patient patient = new Patient(Long.valueOf(Integer.parseInt(patient_id))," ",
                 " "," "," "," "," "," ");
+        commentRepository.delete_by_foreign_key(new Comment(0," ",Long.valueOf(Integer.parseInt(patient_id))));
         patientRepository.delete(patient);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
